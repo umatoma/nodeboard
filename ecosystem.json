@@ -1,0 +1,35 @@
+{
+  "apps": [
+    {
+      "name"      : "NodeBoard",
+      "script"    : "bin/www",
+      "env": {
+        "COMMON_VARIABLE": "true"
+      },
+      "env_production" : {
+        "NODE_ENV": "production"
+      }
+    }
+  ],
+  "deploy": {
+    "production" : {
+      "user" : "ubuntu",
+      "host" : "192.168.56.101",
+      "ref"  : "origin/master",
+      "repo" : "git@github.com:umatoma/nodeboard.git",
+      "path" : "/var/www/nodeboard/production",
+      "post-deploy" : "npm install ; pm2 startOrRestart ecosystem.json --env production"
+    },
+    "dev" : {
+      "user" : "ubuntu",
+      "host" : "192.168.56.101",
+      "ref"  : "origin/dev",
+      "repo" : "git@github.com:umatoma/nodeboard.git",
+      "path" : "/var/www/nodeboard/development",
+      "post-deploy" : "npm install ; pm2 startOrRestart ecosystem.json --env dev",
+      "env"  : {
+        "NODE_ENV": "dev"
+      }
+    }
+  }
+}
