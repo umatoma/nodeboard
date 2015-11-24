@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "test": "mocha tests"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
@@ -19,6 +20,8 @@
   "devDependencies": {
     "gulp": "~3.9.0",
     "gulp-sass": "~2.1.0",
-    "eslint": "~1.10.1"
+    "eslint": "~1.10.1",
+    "mocha": "~2.3.4",
+    "supertest": "~1.1.0"
   }
 }
