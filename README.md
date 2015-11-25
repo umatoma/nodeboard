@@ -1,14 +1,34 @@
 # NodeBoard
 Sample board application with Node.js
 
-# Require
+# Requirements
 * Node.js - v0.12.x (nvm)
 * MongoDB - 3.0.x
+
+# NPM Packages
+```sh
+$ npm install -g gulp
+$ npm install -g mocha
+$ npm install -g eslint
+```
 
 # MongoDB
 ```sh
 # Start
-$ mongod --config conf/mongod.conf --fork
+$ gulp start mongo.start
+# Stop
+$ gulp start mongo.stop
+```
+
+# Unit Test
+```sh
+$ npm test
+```
+
+# Linter
+Check coding style by ESLint.
+```sh
+$ gulp check.lint
 ```
 
 # Process manager
