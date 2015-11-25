@@ -21,10 +21,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(require('node-sass-middleware')({
-  src: path.join(__dirname, 'public'),
-  dest: path.join(__dirname, 'public'),
+  src:            path.join(__dirname, 'public'),
+  dest:           path.join(__dirname, 'public'),
   indentedSyntax: true,
-  sourceMap: true
+  sourceMap:      true
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -47,7 +47,7 @@ if (app.get('env') === 'development') {
     res.status(err.status || 500);
     res.render('error', {
       message: err.message,
-      error: err
+      error:   err
     });
   });
 }
@@ -58,7 +58,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,
-    error: {}
+    error:   {}
   });
 });
 
