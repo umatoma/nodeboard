@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var boards = require('./routes/boards');
 
 var app = express();
 
@@ -28,6 +29,13 @@ app.use(require('node-sass-middleware')({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Common params
+app.use(function(req, res, next) {
+  res.locals.title = 'NodeBoard';
+  next();
+});
+
+// Routes
 app.use('/', routes);
 app.use('/users', users);
 
