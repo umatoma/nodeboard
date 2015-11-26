@@ -7,9 +7,7 @@ Sample board application with Node.js
 
 # NPM Packages
 ```sh
-$ npm install -g gulp
-$ npm install -g mocha
-$ npm install -g eslint
+$ npm install -g gulp mocha eslint mysql sequelize
 ```
 
 # MySQL (MariaDB)
