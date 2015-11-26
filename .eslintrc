@@ -7,16 +7,13 @@
     "modules": true
   },
   "rules": {
-    "block-scoped-var": 2,
     "comma-dangle": [2, "never"],
     "complexity": [2, 2],
     "dot-notation": 2,
-    "key-spacing": [2, { "align": "value", "afterColon": true }],
     "no-console": 2,
     "no-extra-boolean-cast": 2,
     "no-extra-parens": 2,
     "no-floating-decimal": 2,
-    "no-multi-spaces": 2,
     "no-multi-str": 2,
     "no-proto": 2,
     "no-self-compare": 2,

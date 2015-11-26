@@ -18,37 +18,24 @@ gulp.task('sass', function() {
 });
 
 /**
-* Start MongoDB
+* Start MySQL (MariaDB)
 */
-gulp.task('mongo.start', function(cb) {
-  var child = exec('mongod --config conf/mongod.conf --fork');
-  child.stdout.on('data', function(data) {
-    gutil.log(data);
-  });
-  child.stderr.on('data', function(data) {
-    gutil.log(gutil.colors.red(data));
-  });
-  child.on('close', function(code) {
-    gutil.log('closing code:', gutil.colors.cyan(code));
-    cb();
-  });
+gulp.task('mysql.start', function(cb) {
+  exec_command('mysql.server start', cb);
 });
 
 /**
-* Stop MongoDB
+* Restart MySQL (MariaDB)
 */
-gulp.task('mongo.stop', function(cb) {
-  var child = exec('kill `pgrep mongod`');
-  child.stdout.on('data', function(data) {
-    gutil.log(data);
-  });
-  child.stderr.on('data', function(data) {
-    gutil.log(gutil.colors.red(data));
-  });
-  child.on('close', function(code) {
-    gutil.log('closing code:', gutil.colors.cyan(code));
-    cb();
-  });
+gulp.task('mysql.restart', function(cb) {
+  exec_command('mysql.server restart', cb);
+});
+
+/**
+* Stop MySQL (MariaDB)
+*/
+gulp.task('mysql.stop', function(cb) {
+  exec_command('mysql.server stop', cb);
 });
 
 /**
@@ -64,3 +51,22 @@ gulp.task('lint.check', function() {
         gutil.log('Total Errors: ' + results.errorCount);
     }));
 });
+
+/**
+* Execute command
+* @param {string} command - The string of execute command.
+* @param {function} callback - Callback for async task.
+*/
+function exec_command(command, callback) {
+  var child = exec(command);
+  child.stdout.on('data', function(data) {
+    gutil.log(data);
+  });
+  child.stderr.on('data', function(data) {
+    gutil.log(gutil.colors.red(data));
+  });
+  child.on('close', function(code) {
+    gutil.log('closing code:', gutil.colors.cyan(code));
+    callback();
+  });
+};
