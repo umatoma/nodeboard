@@ -12,12 +12,16 @@ $ npm install -g mocha
 $ npm install -g eslint
 ```
 
-# MongoDB
+# MySQL (MariaDB)
 ```sh
-# Start
-$ gulp start mongo.start
-# Stop
-$ gulp start mongo.stop
+$ gulp mysql:start
+$ gulp mysql:stop
+```
+
+# Migration
+```sh
+$ sequelize db:migrate
+$ sequelize db:migrate:undo
 ```
 
 # Unit Test
