@@ -10,8 +10,8 @@ module.exports = {
           primaryKey: true,
           autoIncrement: true
         },
-        message: {
-          type: Sequelize.TEXT,
+        name: {
+          type: Sequelize.STRING,
           allowNull: false
         },
         created_at: {
