@@ -32,3 +32,6 @@ npm-debug.log
 # Public directory
 public/stylesheets/*.css
 public/stylesheets/*.css.map
+
+# Dotenv
+.env
