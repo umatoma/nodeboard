@@ -41,7 +41,7 @@ gulp.task('mysql:stop', function(cb) {
 /**
 * Lint with ESLint
 */
-gulp.task('lint.check', function() {
+gulp.task('lint:check', function() {
   return gulp.src(['**/*.js','!node_modules/**'])
     .pipe(eslint({ configFile: '.eslintrc' }))
     .pipe(eslint.format())
