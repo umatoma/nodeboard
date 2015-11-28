@@ -35,3 +35,6 @@ public/stylesheets/*.css.map
 
 # Dotenv
 .env
+
+# bower
+public/lib
