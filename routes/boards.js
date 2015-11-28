@@ -18,4 +18,19 @@ router.get('/', function(req, res, next) {
     );
 });
 
+/* GET create board. */
+router.post('/create', function(req, res, next) {
+  Board.create({
+    name: req.body.name
+  }).then(
+    function() {
+      res.redirect('./');
+    },
+    function(err) {
+      debug(err.message);
+      res.redirect('./');
+    }
+  );
+});
+
 module.exports = router;

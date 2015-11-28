@@ -2,6 +2,23 @@ extends ../layout
 
 block content
   h1 Boards
-  ul
-    each board in boards
-      li= board.id
+  form(action='/boards/create' method='POST')
+    div
+      label Name
+      input(type='text' name='name')
+    div
+      input(type='submit' value='Submit')
+  table
+    thead
+      tr
+        th id
+        th name
+        th created_at
+        th updated_at
+    tbody
+      each board in boards
+        tr
+          td= board.id
+          td= board.name
+          td= board.created_at
+          td= board.updated_at
