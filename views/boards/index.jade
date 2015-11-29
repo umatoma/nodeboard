@@ -1,14 +1,20 @@
 extends ../layout
 
 block content
-  h1 Boards
-  form(action='/boards/create' method='POST')
-    div
-      label Name
-      input(type='text' name='name')
-    div
-      input(type='submit' value='Submit')
-  table
+  .page-header
+    h1 Boards
+  form.form-horizontal(action='/boards/create' method='POST')
+    h2 Create Form
+    .form-group
+      label.col-sm-2.control-label Name
+      .col-sm-4
+        input.form-control(type='text' name='name')
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        input.btn.btn-primary(type='submit' value='Submit')
+        
+  h2 Board List
+  table.table.table-striped
     thead
       tr
         th id

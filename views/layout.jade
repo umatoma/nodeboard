@@ -2,6 +2,13 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    // meta
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    // stylesheets
+    link(rel='stylesheet', href='/lib/bootstrap/dist/css/bootstrap.min.css')
+    // scripts
+    script(type='text/javascript', src='/lib/jquery/dist/jquery.min.js')
+    script(type='text/javascript', src='/lib/bootstrap/dist/js/bootstrap.min.js')
   body
-    block content
+    .container
+      block content
