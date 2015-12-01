@@ -1,0 +1,24 @@
+extends ../layout
+
+block content
+  .page-header
+    h1 Board-#{board.id}
+  form.form-horizontal(action='/boards/#{board.id}/posts/create' method='POST')
+    h2 Create Form
+    .form-group
+      label.col-sm-2.control-label Message
+      .col-sm-4
+        textarea.form-control(name='message')
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        input.btn.btn-primary(type='submit' value='Submit')
+        
+  h2 Posts List
+  each post in posts
+    .media
+      .media-left
+        a(href='#')
+          img.media-object(src='http://placehold.jp/64x64.png')
+      .media-body
+        h4=post.id
+        p=post.message

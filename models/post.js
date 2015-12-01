@@ -1,22 +1,26 @@
 module.exports = function(sequelize, DataTypes) {
-  var Board = sequelize.define('Board', {
-    name: {
-      type: DataTypes.STRING,
+  var Post = sequelize.define('Post', {
+    board_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    message: {
+      type: DataTypes.TEXT,
       allowNull: false,
       validate: {
         notEmpty: true
       }
     }
   }, {
-    tableName: 'boards',
+    tableName: 'posts',
     timestamps: true,
     underscored: true,
     classMethods: {
       associate: function(models) {
-        Board.hasMany(models.Post);
+        Post.belongsTo(models.Board);
       }
     }
   });
 
-  return Board;
+  return Post;
 };
