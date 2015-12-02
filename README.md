@@ -3,17 +3,17 @@ Sample board application with Node.js
 
 # Requirements
 * Node.js - v0.12.x (nvm)
-* MongoDB - 3.0.x
+* MariaDB - 10.x
 
 # NPM Packages
 ```sh
 $ npm install -g gulp mocha eslint mysql sequelize
 ```
 
-# MySQL (MariaDB)
+# MariaDB
 ```sh
-$ gulp mysql:start
-$ gulp mysql:stop
+$ gulp db:start
+$ gulp db:stop
 ```
 
 # Migration

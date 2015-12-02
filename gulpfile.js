@@ -20,21 +20,21 @@ gulp.task('sass', function() {
 /**
 * Start MySQL (MariaDB)
 */
-gulp.task('mysql:start', function(cb) {
+gulp.task('db:start', function(cb) {
   exec_command('mysql.server start', cb);
 });
 
 /**
 * Restart MySQL (MariaDB)
 */
-gulp.task('mysql:restart', function(cb) {
+gulp.task('db:restart', function(cb) {
   exec_command('mysql.server restart', cb);
 });
 
 /**
 * Stop MySQL (MariaDB)
 */
-gulp.task('mysql:stop', function(cb) {
+gulp.task('db:stop', function(cb) {
   exec_command('mysql.server stop', cb);
 });
 
