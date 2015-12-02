@@ -3,6 +3,9 @@ extends ../layout
 block content
   .page-header
     h1 Boards
+  ol.breadcrumb
+    li
+      a(href='/') Top
   form.form-horizontal(action='/boards/create' method='POST')
     h2 Create Form
     .form-group
@@ -21,10 +24,13 @@ block content
         th name
         th created_at
         th updated_at
+        th show
     tbody
       each board in boards
         tr
           td= board.id
           td= board.name
-          td= board.created_at
-          td= board.updated_at
+          td= moment(board.created_at).format('YYYY/MM/DD HH:mm:ss')
+          td= moment(board.updated_at).format('YYYY/MM/DD HH:mm:ss')
+          td
+            a(href='/boards/#{board.id}') link

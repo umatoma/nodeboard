@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var moment = require('moment');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -31,6 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Common params
 app.use(function(req, res, next) {
+  res.locals.moment = moment;
   res.locals.title = 'NodeBoard';
   next();
 });

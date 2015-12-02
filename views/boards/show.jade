@@ -3,6 +3,11 @@ extends ../layout
 block content
   .page-header
     h1 Board-#{board.id}
+  ol.breadcrumb
+    li
+      a(href='/') Top
+    li
+      a(href='/boards') Boards
   form.form-horizontal(action='/boards/#{board.id}/posts/create' method='POST')
     h2 Create Form
     .form-group
