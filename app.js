@@ -5,10 +5,16 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var moment = require('moment');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var session = require('express-session');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var boards = require('./routes/boards');
+
+var models = require('./models');
+var User = models.User;
 
 var app = express();
 
@@ -22,6 +28,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({ secret: 'secret', resave: false, saveUninitialized: false }));
 app.use(require('node-sass-middleware')({
   src:            path.join(__dirname, 'public'),
   dest:           path.join(__dirname, 'public'),
@@ -29,6 +36,38 @@ app.use(require('node-sass-middleware')({
   sourceMap:      true
 }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Username & Password authorization
+passport.use(new LocalStrategy(
+  {
+    usernameField: 'username',
+    passwordField: 'password'
+  },
+  function(username, password, done) {
+    var user = { id: 1, username: username, password: 'pass' };
+
+    if (username != user.username) {
+      return done(null, false, { message: 'Incorrect username.' });
+    }
+
+    if (password != user.password) {
+      return done(null, false, { message: 'Incorrect password.' });
+    }
+
+    return done(null, user);
+  })
+);
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  var user = { id: 1, username: 'user', password: 'pass' };
+  done(null, user);
+});
 
 // Common params
 app.use(function(req, res, next) {
@@ -38,9 +77,15 @@ app.use(function(req, res, next) {
 });
 
 // Routes
+var auth_user = function(req, res, next) {
+  console.log('user', req.user);
+  if (!req.user) return res.redirect('/');
+  if (req.user.id != 1) return res.redirect('/');
+  next();
+};
 app.use('/', routes);
 app.use('/users', users);
-app.use('/boards', boards);
+app.use('/boards', auth_user, boards);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
